@@ -9,8 +9,7 @@
 
 
 class SecretHandshake
-  attr_accessor :commands
-  attr_accessor :total_commands, :binary_digits
+  attr_accessor :commands, :total_commands, :binary_digits
   
   def initialize(val)
     @binary_digits = to_binary(val)
@@ -26,6 +25,10 @@ class SecretHandshake
   
   def decimal_to_binary(val)
     val.to_s(2).chars.map(&:to_i)
+  end
+  
+  def str_to_binary(val)
+    val.chars.map(&:to_i)
   end
   
   def process_commands
@@ -50,10 +53,6 @@ class SecretHandshake
   
   def slice_binary_digits
     self.binary_digits = binary_digits[-4..-1] if binary_digits.size > 4
-  end
-  
-  def str_to_binary(val)
-    val.chars.map(&:to_i)
   end
   
   def reverse_commands
